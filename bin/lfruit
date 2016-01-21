@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+# coding: utf-8
+if ENV["DEBUG_LFRUIT"]
+  require '../lib/lfruit'
+else
+  require 'lfruit'
+end
+options = Lfruit::OptParser::parse(ARGV)
+crawler = Lfruit::Crawler.new(options)
+crawler.start!
