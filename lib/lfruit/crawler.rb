@@ -11,7 +11,8 @@ module Lfruit
       :limit,
       :queue,
       :filter,
-      :finished_queue
+      :finished_queue,
+      :pattern
 
     def initialize(option)
       queue_size = option.parallel_num || DEFAULT_THREAD_NUM
@@ -19,6 +20,7 @@ module Lfruit
       limit_loop = option.limit || DEFAULT_LIMIT
       format = option.format || DEFAULT_FORMAT
 
+      @delay = option.delay || DEFAULT_DELAY
       @download_queue = Download::Queue.new(queue_size)
       @location_controller = LocationController.new(save_folder)
       @base_url = option.url
@@ -26,7 +28,7 @@ module Lfruit
       @crawl_queue = Array.new
       @finished_queue = Array.new
       @downloaded_queue = Array.new
-      @filter = Filter.new(format)
+      @filter = [FormatFilter.new(format), PatternFilter.new(option.pattern)]
     end
 
     def start!
@@ -40,6 +42,8 @@ module Lfruit
       loop do
         url = @crawl_queue.shift
         return if url.nil?
+
+        sleep(@delay)
 
         info "going to crawl #{url}"
 

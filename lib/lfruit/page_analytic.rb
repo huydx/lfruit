@@ -1,11 +1,10 @@
 require 'open-uri'
-require "pry"
 
 module Lfruit
   module PageAnalytic
     extend UrlHelper
 
-    def self.read(url, filter)
+    def self.read(url, filters)
       charset = nil
 
       html = open(url) do |f|
@@ -23,7 +22,7 @@ module Lfruit
         [src, href].each do |u|
           next if u.nil? || email_url?(u)
           if resource_url?(u)
-            to_download << full_path(url, u) if filter.pass?(u)
+            to_download << full_path(url, u) if filters.all? { |f| f.pass?(u) }
           elsif access_url?(u)
             to_fetch << full_path(url, u)
           end

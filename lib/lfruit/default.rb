@@ -4,5 +4,6 @@ module Lfruit
     DEFAULT_LOCATION = "/tmp"
     DEFAULT_LIMIT = 50
     DEFAULT_FORMAT = "pdf"
+    DEFAULT_DELAY = 0
   end
 end

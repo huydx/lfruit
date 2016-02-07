@@ -8,6 +8,7 @@ module Lfruit
       :format,
       :limit,
       :exclude_pattern,
+      :pattern,
       :same_domain,
       :parallel_num
   end
@@ -39,6 +40,10 @@ module Lfruit
 
         opt.on('--exclude [EXCLUDE_PATTERN]') do |v|
           option.exclude_pattern = v
+        end
+
+        opt.on('--pattern [INCLUDE_PATTERN]') do |v|
+          option.pattern = v
         end
 
         opt.on('--same_domain [IS_SAME_DOMAIN]') do |v|
