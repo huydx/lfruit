@@ -1,7 +1,7 @@
 =======
 # Lfruit
 
-![img](https://i.gyazo.com/bdb2bd828ecc0113542d02b8a6909b14.png)
+![img](https://i.gyazo.com/47a05233d45a1a2f4d2d0db6b8f67ec2.png)
 
 Lets say: you want a crawler which you can say to it
 > *I have a web site url.com, let's go crawl and download for me every pdf file url.com, and sites that link to url.com have*
